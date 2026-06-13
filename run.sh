@@ -18,6 +18,22 @@ elif [ "$1" = "run_reporter" ]; then
   mkdir -p data
   docker run --rm -v "$(pwd)/data:/data" student-data-reporter
 
+elif [ "$1" = "structure" ]; then
+  find .
+
+elif [ "$1" = "clear_data" ]; then
+  mkdir -p data
+  rm -f data/*.csv
+  rm -f data/*.html
+
+elif [ "$1" = "inside_generator" ]; then
+  mkdir -p data
+  docker run --rm -v "$(pwd)/data:/data" --entrypoint ls student-data-generator -la /data
+
+elif [ "$1" = "inside_reporter" ]; then
+  mkdir -p data
+  docker run --rm -v "$(pwd)/data:/data" --entrypoint ls student-data-reporter -la /data
+
 else
   echo "Неизвестная команда"
   echo "Доступные команды:"
@@ -26,4 +42,8 @@ else
   echo "./run.sh create_local_data"
   echo "./run.sh build_reporter"
   echo "./run.sh run_reporter"
+  echo "./run.sh structure"
+  echo "./run.sh clear_data"
+  echo "./run.sh inside_generator"
+  echo "./run.sh inside_reporter"
 fi
