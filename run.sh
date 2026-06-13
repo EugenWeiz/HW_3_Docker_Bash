@@ -20,7 +20,7 @@ elif [ "$1" = "run_reporter" ]; then
 
 elif [ "$1" = "structure" ]; then
   if command -v tree > /dev/null; then
-    tree -a
+    tree -a -I '.git'
   else
     find .
   fi
