@@ -19,7 +19,11 @@ elif [ "$1" = "run_reporter" ]; then
   docker run --rm -v "$(pwd)/data:/data" student-data-reporter
 
 elif [ "$1" = "structure" ]; then
-  find .
+  if command -v tree > /dev/null; then
+    tree -a
+  else
+    find .
+  fi
 
 elif [ "$1" = "clear_data" ]; then
   mkdir -p data
